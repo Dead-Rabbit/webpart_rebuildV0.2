@@ -1,6 +1,6 @@
 function doConnect(){
 	logs.innerHTML+="正在连接服务器<br />";
-	var linkString = "ws://localhost:8080/Clash/clash";
+	var linkString = "ws://115.159.212.28/clash/clash";
 	websocket = new WebSocket(linkString);
 	console.log("connect success!");
 	websocket.onopen = function(){

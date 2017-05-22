@@ -26,7 +26,7 @@ document.onkeydown=function(event){
     		case'q' :
     			sendNumber = 0;
     			testmouseput = 1;
-    			// Balls[0].skill = "flash";
+    			testShowParticle();
     		break;
     		case'w' :
     			sendNumber = 1;
@@ -57,25 +57,7 @@ function getBallById(id){
 	}
 	return resBall;
 }
-// 粒子更新
-function particleUpdate(){
 
-	var pCount = particleCount;
-	while(pCount--) {
-		// 获取单个粒子
-		var particle = particles.vertices[pCount];
-		// 检查是否需要重置
-		particle.z -= particle.velocityZ;
-		if(particle.z < 0) {
-			particle.z = particlesHeight;
-		}
-		// 用随机数更新水平速度分量，并根据速度更新位置
-		particle.velocityY -= Math.random() * .1;
-		// particle.position.addSelf(velocityY);
-	}
-	// 告诉粒子系统我们改变了粒子位置
-	// particleSystem.geometry.__dirtyVertices = true;
-}
 //鼠标更新事件
 document.onmousemove = mouseMove;
 function mousePosition(ev){

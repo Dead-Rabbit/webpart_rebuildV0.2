@@ -26,7 +26,6 @@ function changeAllBallNextPosition(){
 				allBallJson[oneBallJson].flag = 1;
 				Balls[oneBall].setNextPosition(new position(allBallJson[oneBallJson].x,allBallJson[oneBallJson].y,0));
 			}
-			
 		}
 	}
 	//判断玩家退出事件
@@ -43,7 +42,7 @@ function changeAllBallNextPosition(){
 		if(allBallJson[oneBallJson].flag == 0){
 			console.log("add ball " + allBallJson[oneBallJson].id);
 			//加入玩家
-			var new_ball = new ball();
+			var new_ball = _BALL.createBall("red");
 			// new_ball.setRadius(1);
 			// my_ball = new_ball;
 			addNewBall(new_ball,allBallJson[oneBallJson].id);

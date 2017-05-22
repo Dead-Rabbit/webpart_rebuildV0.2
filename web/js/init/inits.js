@@ -12,12 +12,13 @@ var backgroundColor = 0x68c3c0;
 
 var ambientLight, hemisphereLight, shadowLight;
 
-var my_ball,my_id,new_ball,Balls;
+var my_ball,my_id,Balls;
 
 var readyLoop = false;
 var allBallJson = {
 
 };
+var _BALL;
 var axes;
 //定义鼠标
 var myMouse ;
@@ -66,10 +67,10 @@ function createScene(){
 }
 
 function loadBalls(){
+  _BALL = new ball_interface();
   logs.innerHTML="正在装载玩家<br />";
 	Balls = [];
 	Balls = new Array();
-	new_ball = new ball();
   logs.innerHTML+="玩家登陆完毕<br />";
 }
 var stones;
@@ -96,42 +97,4 @@ function createLights() {
   shadowLight.castShadow = true;
   scene.add(hemisphereLight);
   scene.add(shadowLight);
-}
-
-var particleSystem ,particleCount,particles,pMaterial,particlesHeight;
-function createParticle(){
-    // 创建粒子geometry
-    particleCount = 1800;
-    particlesHeight = 150;
-    particles = new THREE.Geometry();
-    pMaterial = new THREE.ParticleBasicMaterial({
-        color: 0xFFFFFF,
-        size: 5,
-        map: THREE.ImageUtils.loadTexture(
-          "../assets/textures/particles/snowflake2.png"
-        ),
-        blending: THREE.AdditiveBlending,
-        transparent: true
-      });
-    // 依次创建单个粒子
-    for(var p = 0; p < particleCount; p++) {
-      // 粒子范围在-250到250之间
-      var pX = Math.random() * 500 - 250,
-          pY = Math.random() * 500 - 250,
-          pZ = Math.random() * particlesHeight,
-          particle = new THREE.Vector3(pX, pY, pZ);
-      particle.velocityZ = Math.random() * 0.6;
-      particle.velocityX = Math.random() * 0.6;
-      particle.velocityY = Math.random() * 0.6;
-      // 将粒子加入粒子geometry
-      particles.vertices.push(particle);
-    }
-    // 创建粒子系统
-    particleSystem =
-      new THREE.ParticleSystem(
-        particles,
-        pMaterial);
-    particleSystem.sortParticles = true;
-    // 将粒子系统加入场景
-    scene.add(particleSystem); 
 }
