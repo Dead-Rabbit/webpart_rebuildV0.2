@@ -88,7 +88,7 @@ mouse.prototype.initPosition = function() {
 		this.lines[i].rotation.z = this.mouseAngle;
 		this.lines[i].position.x = this.center.x;
 		this.lines[i].position.y = this.center.y;
-		this.lines[i].position.z = this.center.z;
+		this.lines[i].position.z = 10;
 	}
 };
 mouse.prototype.draw = function(scene) {

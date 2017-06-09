@@ -8,6 +8,7 @@ function ball(){
     this.id = "0";
     this.name = "";
     this.color = "";
+    this.nameMesh = new THREE.Mesh() ;
     //技能效果
     this.skill = "none";
     //每个周期所需跳数
@@ -44,6 +45,10 @@ function ball(){
 //小球位置更新，不传递参数，通过自身的 nextposition 更改
 //小球的新position来自messageServer的新消息
 //更新小球的粒子效果
+ball.prototype.removeself = function() {
+    scene.remove(this.core);
+    scene.remove(this.nameMesh);
+};
 ball.prototype.doUpdate = function() {
     switch(this.skill){
         case "flash":
@@ -82,12 +87,14 @@ ball.prototype.moveToNext = function() {
         this.core.position.x = this.position.x;
         this.core.position.y = this.position.y;
         this.core.position.z = this.position.z;
+
+        this.nameMesh.position.x = this.position.x;
+        this.nameMesh.position.y = this.position.y;
         //网上找出的 矩阵旋转方案：
         //http://stackoverflow.com/questions/11060734/how-to-rotate-a-3d-object-on-axis-three-js
         this.rotateAroundWorldAxis(this.core,this.xAxis,Math.PI / 360*this.speed);
     }
 };
-
 //运动2
 ball.prototype.turnToNext = function() {
     // 效果
@@ -257,3 +264,33 @@ ball.prototype.getRotateXAY = function(fromPosition,toPosition){
     // console.log("x:"+x2+",y:"+y);
     return {x:x2,y:y2}
 }
+ball.prototype.createText = function(content) {
+    var options = {
+        size: this.radius,
+        height: 0,
+        bevelThickness: 2,
+        // font:'我字酷默陌写意水墨体',
+        bevelSize: 0,
+        bevelSegments: 3,
+        bevelEnabled: false,
+        curveSegments: 9,
+        steps: 1
+    };
+    this.nameMesh = this.createTextMesh(new THREE.TextGeometry(content, options));
+};
+ball.prototype.createTextMesh = function(geom) {
+// assign two materials
+//            var meshMaterial = new THREE.MeshLambertMaterial({color: 0xff5555});
+//            var meshMaterial = new THREE.MeshNormalMaterial();
+    var meshMaterial = new THREE.MeshPhongMaterial({
+        specular: 0xffffff,
+        color: 0xeeffff,
+        shininess: 100,
+        metal: true
+    });
+//            meshMaterial.side=THREE.DoubleSide;
+    // create a multimaterial
+    var plane = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial]);
+
+    return plane;
+};

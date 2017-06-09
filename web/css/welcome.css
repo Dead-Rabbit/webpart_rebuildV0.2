@@ -1,0 +1,71 @@
+@font-face{
+	font-family: "title-font";
+	src:url('./font/font475.otf');
+}
+#user-page{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+.title{
+	font-family: "title-font";
+	font-size: 5em;
+	display: inline-block;
+	width:100%;
+	text-align: center;
+}
+.page{
+	width:500px;
+	height:80%;
+	background-color: white;
+	border-radius: 10px;
+/*	position:absolute;
+	bottom: 0px;*/
+	margin: 0px auto;
+	left: 5%;
+	box-shadow: black 5px 5px 40px;
+	transition-duration: .2s;
+}
+.page:hover{
+	box-shadow: black 5px 5px 60px;
+}
+.name-input-div{
+	padding-top: 40%;
+	width: 100%;
+	height: 3em;
+}
+.name-input-div span{
+	display: inline-block;
+	text-align: right;
+	width: 20%;
+	padding-left: 5%;
+}
+.name-input-div input{
+	outline: none;
+	border-top:none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1.5px #eee solid;
+	text-align: center;
+	line-height: 2em;
+	font-size: 1.5em;
+	width: 60%;
+}
+.name-input-div a{
+	width: 30%;
+	height: 3em;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 3em;
+	margin:0px auto;
+	margin-top: 3em;
+	display: block;
+	color:white;
+	background-color:#b36d41;
+	transition-duration: .3s;
+}
+.name-input-div a:hover{
+	background-color: #57a8e2;
+	box-shadow: black 0px 0px 4px ;
+}

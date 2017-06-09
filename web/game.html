@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Threejs test</title>
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+                <link rel="stylesheet" type="text/css" href="css/welcome.css">
+	</head>
+	<body>
+        <div id="user-page">
+                <span class="title">Clash</span>
+                <div class="page">
+                        <div class="name-input-div">
+                                <span >输入昵称:</span>
+                                <input type="text" id="name" autocomplete="off">
+                                <a id="joinGame">Play as Guest</a>
+                        </div>
+                </div>
+        </div>
+        <div id="WebGL-output" class="world">
+        	
+        </div>
+        <div id="logs"></div>
+        <!-- 库文件 -->
+	<script type="text/javascript" src="../libs/three.js"></script>
+	<script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="../libs/DDSLoader.js"></script>
+        <script type="text/javascript" src="../libs/ConvexGeometry.js"></script>
+        <script type="text/javascript" src="../assets/fonts/helvetiker_regular.typeface.js"></script>
+        <script type="text/javascript" src="../assets/fonts/helvetiker_bold.typeface.js"></script>
+        <script type="text/javascript" src="../assets/fonts/bitstream_vera_sans_mono_roman.typeface.js"></script>
+<!-- 引入文件 -->
+        <!-- 所有全局变量 -->
+        <script type="text/javascript" src="./js/init/inits.js"></script>
+        <script type="text/javascript" src="./js/util/listUtil.js"></script>
+        <script type="text/javascript" src="./js/init/meshLoad.js"></script>
+        <script type="text/javascript" src="./js/Bases/position.js"></script>
+        <script type="text/javascript" src="./js/Bases/drawBase.js"></script>
+        <script type="text/javascript" src="./js/Bases/mapDetails/ground/flatbase.js"></script>
+        <script type="text/javascript" src="./js/Bases/map.js"></script>
+        <script type="text/javascript" src="./js/Bases/polygon/polygon.js"></script>
+        <script type="text/javascript" src="./js/Bases/mapDetails/stone_crystal-ConvexGeometry/stone.js"></script>
+        <script type="text/javascript" src="./js/Bases/mapDetails/stone_normal-ConvexGeometry/stone.js"></script>
+        <script type="text/javascript" src="./js/Bases/ball/ball_interface.js"></script>
+        <script type="text/javascript" src="./js/Bases/camera.js"></script>
+        <script type="text/javascript" src="./js/Bases/mouse.js"></script>
+        <!-- 粒子 -->
+        <script type="text/javascript" src="./js/Bases/particle/particle.js"></script>
+        <!-- 引入控制文件 -->
+        <script type="text/javascript" src="./js/server/messageServer.js"></script>
+        <script type="text/javascript" src="./js/Control/websocketControl.js"></script>
+        <script type="text/javascript" src="./js/Control/updateControl.js"></script>
+
+        <script type="text/javascript" src="./js/index.js"></script>
+
+	</body>
+</html>

@@ -6,11 +6,13 @@ function systemUpdate(time,receiveTime){
 	ballUpdate();
 	particleUpdate();
 
-
-	Camera.setLookAt(my_ball.getPosition());
-    Camera.setPosition(my_ball.getPosition());
+	if(my_ball != null  || my_ball != undefined || my_ball != ''){
+		gameCenter = my_ball.position;
+	}
+	Camera.setLookAt(gameCenter);
+	Camera.setPosition(gameCenter);
     //及时更改鼠标中心，将小球的位置传入
-    myMouse.doUpdate(my_ball.position);
+    myMouse.doUpdate(gameCenter);
 
     return time>=receiveTime?0:++time;
 }
@@ -89,5 +91,4 @@ function sendMousePosition(){
 		websocket.send(JSON.stringify(sendMessage));
 		mouse_time = 0;
 	}
-	//websocket.send(JSON.stringify(sendMessage));
 }

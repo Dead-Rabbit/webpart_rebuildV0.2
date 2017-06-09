@@ -4,16 +4,19 @@ function init(event){
   meshLoad();
   createLights();
   createMouse();
-  createAxes();
+  // createAxes();
   loadBalls();
   // 载入地图（当前只为石头）
-  // loadMap();
+  loadMap();
   //载入粒子系统
   createParticle();
 
   doConnect();
-  
-  loop();
+  //绑定事件
+  bindEvent();
+  //draw_Plogin();
+
+  loop(); 
 }
 function loop(){
   if(readyLoop){
@@ -22,8 +25,4 @@ function loop(){
   renderer.render(scene,Camera.getCamera());
   requestAnimationFrame(loop);
 }
-// function changeFunction(){
-//   backgroundColor = 0x000000;
-//   renderer.setClearColor(new THREE.Color(backgroundColor, 1.0));
-// }
 window.addEventListener('load', init, false);

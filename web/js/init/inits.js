@@ -5,19 +5,19 @@ var Colors = {
     pink:0xF5986E,
     brownDark:0x23190f,
     blue:0x68c3c0,
+    background:0xede36f
 };
 var loadMeshSucc = false,connectWebSocketSucc = false;
 var logs = document.getElementById("logs");
-var backgroundColor = 0x68c3c0;
 
 var ambientLight, hemisphereLight, shadowLight;
 
-var my_ball,my_id,Balls;
+var _gamemap ;
+
+var my_ball,my_id,Balls,Plygons,gameCenter;
 
 var readyLoop = false;
-var allBallJson = {
 
-};
 var _BALL;
 var axes;
 //定义鼠标
@@ -53,41 +53,48 @@ var webGLRenderer,scene ,renderer,spotLight,Camera ;
 function createScene(){
   webGLRenderer = new THREE.WebGLRenderer();
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog(backgroundColor, 100,950);
+	scene.fog = new THREE.Fog(Colors.background, 100,950);
 
 	renderer = new THREE.WebGLRenderer({antialias:true});//生成渲染器对象（属性：抗锯齿效果为设置有效）
-	renderer.setClearColor(new THREE.Color(backgroundColor, 1.0));
+	renderer.setClearColor(new THREE.Color(Colors.blue, 1.0));
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMapEnabled = true;
 
 	Camera = new camera(new position(5,5,0));
 
 	document.getElementById("WebGL-output").appendChild(renderer.domElement);
-
 }
-
+function bindEvent(){
+  document.getElementById('joinGame').onclick = function(){
+    if(document.getElementById('name').value==''){
+      alert("fuck you! input your name!");
+      return ;
+    }
+    var sendMessage = {
+      'type':'joinGame',
+      'name': document.getElementById('name').value
+    }
+    websocket.send(JSON.stringify(sendMessage));
+  }
+}
 function loadBalls(){
   _BALL = new ball_interface();
   logs.innerHTML="正在装载玩家<br />";
+  _gamemap = new gameMap();
 	Balls = [];
+  Plygons = new Array();
 	Balls = new Array();
   logs.innerHTML+="玩家登陆完毕<br />";
+  gameCenter = new position(0,0,0);
 }
 var stones;
 function loadMap(){
   logs.innerHTML+="正在加载地图<br />";
-  stones = new Array();
-  for(var stone_i = 0;stone_i < 100;stone_i++){
-      
-  }
-  var oneStone = new stone();
-  stones.push(oneStone);
-  for(var stone_index in stones){
-    stones[stone_index].draw(scene);
-  }
+
+  staticItems = [];
+
   logs.innerHTML+="加载地图完毕<br />";
 }
-
 
 var ambientLight, hemisphereLight, shadowLight;
 function createLights() {
